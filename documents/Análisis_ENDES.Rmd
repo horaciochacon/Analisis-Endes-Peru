@@ -3,22 +3,17 @@ title: 'ENDES 2017 en R: ejemplificando la reproducibilidad del análisis de la 
 author: "Akram Hernández, Horacio Chacón"
 date: "14 de septiembre de 2018"
 output:
-  knitrBootstrap::bootstrap_document:
-    title: "Test file"
+  html_document:
     theme: journal
-    highlight: Xcode
-    theme.chooser: FALSE
-    highlight.chooser: FALSE
-    menu: FALSE
-bibliography: '/Users/horaciochacon/R/endes_r/biblio.bib'
-csl: '/Users/horaciochacon/R/endes_r/documents/Bibliografía/vancouver.csl'
+    toc: true
+    toc_float: true
+bibliography: '../documents/bib/biblio.bib'
+csl: '../documents/bib/vancouver.csl'
 link-citations: yes
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir = '/Users/horaciochacon/R/endes_r')
-
 ```
 
 # Descripción
@@ -77,12 +72,12 @@ Una vez preparados los archivos procedemos a la importación de cada una de las 
 
 
 ```{r lectura, results='hide', message=FALSE, warning=FALSE}
-CSALUD01        <- read_sav("data/CSALUD01.sav", encoding = 'UTF-8')
-MUJER_RE223132  <-  read_sav("data/RE223132.SAV", encoding = 'UTF-8')
-MUJER_REC42     <-  read_sav("data/REC42.SAV", encoding = 'UTF-8')
-PERSONA_RECH1   <-  read_sav("data/RECH1.SAV", encoding = 'UTF-8')
-VIVIENDA_RECH23 <-  read_sav("data/RECH23.SAV", encoding = 'UTF-8')
-HOGAR_RECH0     <-  read_sav("data/RECH0.SAV", encoding = 'UTF-8')
+CSALUD01        <- read_sav("../data/CSALUD01.sav", encoding = 'UTF-8')
+MUJER_RE223132  <-  read_sav("../data/RE223132.SAV", encoding = 'UTF-8')
+MUJER_REC42     <-  read_sav("../data/REC42.SAV", encoding = 'UTF-8')
+PERSONA_RECH1   <-  read_sav("../data/RECH1.SAV", encoding = 'UTF-8')
+VIVIENDA_RECH23 <-  read_sav("../data/RECH23.SAV", encoding = 'UTF-8')
+HOGAR_RECH0     <-  read_sav("../data/RECH0.SAV", encoding = 'UTF-8')
 ```
 
 
@@ -257,7 +252,7 @@ SALUD_CV <- select(BASE_FINAL, HHID, QSNUMERO,HV001, HV022, PESO15_AMAS,sexo = H
 Finalmente, guardamos la base en nuestra carpeta /data_output/ para mantener la trazabilidad de los datos. A partir de este momento empezará el análisis.
 
 ```{r write_csv}
-write.csv(SALUD_CV, 'data_output/SALUD_CV.csv')
+write.csv(SALUD_CV, '../data_output/SALUD_CV.csv')
 ```
 
 ## 8. Análisis
