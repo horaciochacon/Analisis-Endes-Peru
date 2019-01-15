@@ -251,7 +251,7 @@ SALUD_CV <- select(BASE_FINAL, HHID, QSNUMERO,HV001, HV022, PESO15_AMAS,sexo = H
 
 Finalmente, guardamos la base en nuestra carpeta /data_output/ para mantener la trazabilidad de los datos. A partir de este momento empezará el análisis.
 
-```{r write_csv}
+```{r write_csv, eval=F, echo=T}
 write.csv(SALUD_CV, '../data_output/SALUD_CV.csv')
 ```
 

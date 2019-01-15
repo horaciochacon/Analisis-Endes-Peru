@@ -12,30 +12,19 @@ PERSONA   <- consulta_endes(periodo = 2017, codigo_modulo = 64, base = "RECH1", 
 VIVIENDA  <- consulta_endes(periodo = 2017, codigo_modulo = 65, base = "RECH23", guardar = FALSE)
 HOGAR     <- consulta_endes(periodo = 2017, codigo_modulo = 64, base = "RECH0", guardar = FALSE)
 
-# Transformamos las variables de unión (DESCOMPOSICIÓN DEL CASEID EN HHID Y QSNUMERO):
-# 1. Descartamos últimos 3 caracteres de CASEID y lo convertimos a HHID
-# 2. Extraemos los últimos 2 caracteres de CASEID y lo convertimos a QSNUMERO
-# 3. Convertimos la variable de texto a numérica
+# Realizamos la unión con la función unir_endes
 
-MUJER_OBS <- MUJER_OBS %>%
-  mutate(HHID = str_sub(CASEID, 1, (str_length(CASEID) - 3)), QSNUMERO = as.numeric(str_sub(CASEID, -2, -1)))
-MUJER_LAC <- MUJER_LAC %>%
-  mutate(HHID = str_sub(CASEID, 1, (str_length(CASEID) - 3)), QSNUMERO = as.numeric(str_sub(CASEID, -2, -1)))
-PERSONA$QSNUMERO <- PERSONA$HVIDX # Renombra HVIDX a QSNUMERO
-
-# Realizamos la unión mediante los identificadores o llaves HHID y QSNUMERO
-
-BASE1 <- left_join(PERSONA, SALUD, by = c("HHID", "QSNUMERO"))
-BASE2 <- left_join(MUJER_OBS, MUJER_LAC, by = c("HHID", "QSNUMERO"))
-BASE3 <- left_join(HOGAR, VIVIENDA, by = "HHID")
-BASE4 <- left_join(BASE1, BASE2, by = c("HHID", "QSNUMERO"))
-BASE5 <- left_join(BASE3, BASE4, by = "HHID")
+BASE1 <- unir_endes(PERSONA, SALUD, 'individual')
+BASE2 <- unir_endes(MUJER_OBS, MUJER_LAC, 'individual')
+BASE3 <- unir_endes(HOGAR, VIVIENDA, 'hogar')
+BASE4 <- unir_endes(BASE1, BASE2, 'individual')
+BASE5 <- unir_endes(BASE3, BASE4, 'hogar')
 
 # Filtramos la base de datos final (BASE5)
 
 BASE_FINAL <- BASE5 %>%
   filter(V213 != 1 | is.na(V213)) %>% # Descartamos a las gestantes
-  filter(BASE_FINAL, QSRESINF == 1) # Filtramos entrevistas completas del CSALUD (n = 32 514)
+  filter(QSRESINF == 1) # Filtramos entrevistas completas del CSALUD (n = 32 514)
 
 # Descartamos las bases de datos que ya no son necesarias para ahorrar memoria
 
@@ -102,7 +91,3 @@ ENDES <- select(BASE_FINAL, HHID, QSNUMERO,
   QUINTIL_BIENESTAR = HV270, REGION_NATURAL = SHREGION, HIPERTENSION, PESO,
   TALLA, IMC, OBESIDAD, DIETA_IDEAL
 )
-
-# Especificamos el diseño muestral de la encuesta
-
-diseño <- svydesign(id = ~CONGLOMERADO, strata = ~ESTRATO, weights = ~PONDERACION, data = ENDES)
