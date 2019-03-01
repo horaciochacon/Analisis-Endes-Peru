@@ -68,6 +68,8 @@ BASE_FINAL <- BASE_FINAL %>%
   mutate(IMC = (PESO/(TALLA^2))*10000) %>% 
   mutate(OBESIDAD = IMC >= 30) 
 
+# Calculamos la variable dieta
+
 # Fruta
 BASE_FINAL <- BASE_FINAL %>%
   mutate(fruta_dxs = ifelse(QS213U == 1, QS213C, NA), fruta_uxd = QS214C,

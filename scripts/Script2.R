@@ -1,4 +1,4 @@
-# Nombre:     Script de analisis y visualización de datos ENDES
+# Nombre:     Script de análisis y visualización de datos ENDES
 # Versión:    1.0
 # Autores:    Akram Hernández-Vasquez, Horacio Chacón-Torrico
 # Objetivo:   Generar el análisis ponderado de las variables Obesidad e Hipertensión
