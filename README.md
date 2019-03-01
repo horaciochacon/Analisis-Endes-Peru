@@ -1,6 +1,6 @@
 # Manipulación, análisis y visualización de datos en salud de la Encuesta Demográfica y de Salud Familiar en R
 
-Este repositorio cuenta con el código incluido en la publicación "Manipulación, análisis y visualización de datos en salud de la Encuesta Demográfica y de Salud Familiar en R" de la [Revista Peruana de Medicina Experimental y Salud Pública](https://rpmesp.ins.gob.pe/index.php/rpmesp).
+Este repositorio cuenta con el código incluido en el artículo "Manipulación, análisis y visualización de datos en salud de la Encuesta Demográfica y de Salud Familiar en R" publicado en la [Revista Peruana de Medicina Experimental y Salud Pública](https://rpmesp.ins.gob.pe/index.php/rpmesp).
 
 ## Reproducir Análisis
 
