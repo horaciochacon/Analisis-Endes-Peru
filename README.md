@@ -6,7 +6,7 @@ Este repositorio cuenta con el código incluido en la publicación "Manipulació
 
 Para reproducir el análisis hacer click en "Clone or Download". Descargar como zip y descomprimir. Luego usar [Rstudio](https://www.rstudio.com/) y abrir el archivo repro_endes.Rproj.
 
-Una vez abierto el proyecto solo es necesario ejecutar el Script1.R y Script2.R para replicar el análisis presentado en el estudio. Si se desea utilizar el paquete [ENDES.PE](https://github.com/horaciochacon/ENDES.PE) mediante el script Script1_github.R asegúrese de antes haber instalado el paquete como se especifica el repositorio del paquete.
+Una vez abierto el proyecto solo es necesario ejecutar el Script1.R y Script2.R para replicar el análisis presentado en el estudio. Si se desea utilizar el paquete [ENDES.PE](https://github.com/horaciochacon/ENDES.PE) mediante el script Script1_github.R asegúrese de antes haber instalado el paquete como se especifica el repositorio respectivo.
 
 ## Información
 
