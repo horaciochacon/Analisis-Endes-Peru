@@ -17,4 +17,4 @@ El código presentado en este repositorio y publicación trata de ejemplificar l
 ## Contacto
 
 * Horacio Chacón-Torrico (horacio.chacon.t@upch.pe)
-* Akram Hernandez-Vasquez (akram.hernandez.v@upch.pe)
+* Akram Hernández-Vásquez (akram.hernandez.v@upch.pe)
