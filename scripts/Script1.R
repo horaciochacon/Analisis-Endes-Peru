@@ -1,6 +1,6 @@
 # Nombre:     Script de manipulación y unión ENDES
 # Versión:    1.0
-# Autores:    Akram Hernández-Vasquez, Horacio Chacón-Torrico
+# Autores:    Akram Hernández-Vásquez, Horacio Chacón-Torrico
 # Objetivos:  Cargar las bases de datos de la ENDES, unirlas en una sola base y
 #             construir las variables para el análisis (obesidad, hipertensión y dieta) 
 # Fecha:      28/02/19
