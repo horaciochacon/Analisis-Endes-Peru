@@ -14,6 +14,10 @@ La responsabilidad de la información y código presentado es de entera responsa
 
 El código presentado en este repositorio y publicación trata de ejemplificar la reproducibilidad del análisis de datos de la Encuesta Demográfica y de Salud familiar (ENDES o DHS por sus siglas en inglés) del Instituto Nacional de Estadística e Informática en Perú. Este código es libre de modificar, replicar y mejorar. Procurar citar a los autores si se utiliza para una publicación ulterior (pendiente cita).
 
+## Citar como
+
+Hernández-Vásquez A, Chacón-Torrico H. Manipulación, análisis y visualización de datos de la Encuesta Demográfica y de Salud Familiar con el programa R. Rev Peru Med Exp Salud Publica. 2019;36(1):128-33.doi:10.17843/rpmesp.2019.361.4062.
+
 ## Contacto
 
 * Horacio Chacón-Torrico (horacio.chacon.t@upch.pe)
