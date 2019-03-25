@@ -12,7 +12,7 @@ Una vez abierto el proyecto solo es necesario ejecutar el Script1.R y Script2.R 
 
 La responsabilidad de la información y código presentado es de entera responsabilidad de los autores y no de las instituciones involucradas.
 
-El código presentado en este repositorio y publicación trata de ejemplificar la reproducibilidad del análisis de datos de la Encuesta Demográfica y de Salud familiar (ENDES o DHS por sus siglas en inglés) del Instituto Nacional de Estadística e Informática en Perú. Este código es libre de modificar, replicar y mejorar. Procurar citar a los autores si se utiliza para una publicación ulterior (pendiente cita).
+El código presentado en este repositorio y publicación trata de ejemplificar la reproducibilidad del análisis de datos de la Encuesta Demográfica y de Salud familiar (ENDES o DHS por sus siglas en inglés) del Instituto Nacional de Estadística e Informática en Perú. Este código es libre de modificar, replicar y mejorar. Citar a los autores en caso se utilice todo o parte del codigo presente en este repositorio.
 
 ## Citar como
 
