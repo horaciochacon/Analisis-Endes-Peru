@@ -5,6 +5,7 @@
 #             construir las variables para el análisis (obesidad, hipertensión y dieta) 
 # Fecha:      28/02/19
 
+
 library(tidyverse)
 library(haven)
 library(survey)
@@ -37,15 +38,14 @@ MUJER_ANT$QSNUMERO  <- MUJER_ANT$HA0
 
 BASE1 <- left_join(PERSONA, SALUD, by = c("HHID","QSNUMERO"))
 BASE2 <- left_join(MUJER_OBS, MUJER_LAC, by = c("HHID", "QSNUMERO"))
-BASE2 <- left_join(BASE2, MUJER_ANT, by = c("HHID", "QSNUMERO"))
+BASE1 <- left_join(BASE1, MUJER_ANT, by = c("HHID", "QSNUMERO"))
 BASE3 <- left_join(HOGAR, VIVIENDA, by = "HHID")
 BASE4 <- left_join(BASE1,BASE2,by = c("HHID","QSNUMERO"))
 BASE5 <- left_join(BASE3,BASE4,by = 'HHID')
 
 # Filtramos la base de datos final (BASE5)
 
-BASE_FINAL <- filter(BASE5,V213!= 1 | is.na(V213)) # Descartamos a las gestantes
-BASE_FINAL <- filter(BASE_FINAL,QSRESINF == 1) # Filtramos entrevistas completas del CSALUD (n = 32 514)
+BASE_FINAL <- filter(BASE5,QSRESINF == 1) # Filtramos entrevistas completas del CSALUD (n = 32 514)
 
 # Descartamos las bases de datos que ya no son necesarias para ahorrar memoria 
 
@@ -64,9 +64,20 @@ BASE_FINAL <- BASE_FINAL %>%
   mutate(PESO = ifelse(QS902 == 1 & (QS900 >= 1 & QS900 < 999), QS900,
                        ifelse(QS902 == 4, HA2/10, NA)),
          TALLA = ifelse(QS902 == 1 & (QS901 >= 1 & QS901 < 999), QS901,
-                        ifelse(QS902 == 4, HA3/10, NA))) %>% 
-  mutate(IMC = (PESO/(TALLA^2))*10000) %>% 
-  mutate(OBESIDAD = IMC >= 30) 
+                        ifelse(QS902 == 4, HA3/10, NA)))
+
+BASE_FINAL <- BASE_FINAL %>% 
+  mutate(ha13tmp = case_when(HA13 == 0 ~ 1,
+                             HA13 == 3 ~ 2,
+                             HA13 == 4 ~ 3,
+                             HA13 == 6 ~ 6),
+         RQS902 = ifelse(QS902 == 4, ha13tmp, QS902))
+
+
+BASE_FINAL <- BASE_FINAL %>% 
+  mutate(IMC = PESO/(TALLA^2)*10000) %>% 
+  mutate(OBESIDAD = IMC >= 30, SOBREPESO = IMC >= 25 & IMC < 30) %>% 
+  filter(V213 != 1 | is.na(V213), RQS902 == 1)
 
 # Calculamos la variable dieta
 
@@ -111,3 +122,4 @@ ENDES <- select(BASE_FINAL, HHID, QSNUMERO, CONGLOMERADO = HV001, ESTRATO = HV02
 # Especificamos el diseño muestral de la encuesta
 
 diseño <- svydesign(id =~ CONGLOMERADO, strata =~ ESTRATO, weights=~ PONDERACION, data=ENDES) 
+
